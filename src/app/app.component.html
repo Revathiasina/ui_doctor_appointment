@@ -1,0 +1,15 @@
+<div class="container mt-8">
+    <ng-container *ngIf="!show_form">
+        <div class="card">
+            <div class="card-body">
+                <h2>Hello, want to book an appointment?</h2>
+                <h5>Click below to check available slots.</h5>
+                <button type="button" class="btn btn-primary" (click)="checkSlots()">Check Slots</button>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="show_form">
+        <app-appointment></app-appointment>
+    </ng-container>
+</div>

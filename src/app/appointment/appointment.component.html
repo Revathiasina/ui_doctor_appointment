@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            Check Slots
+        </div>
+        <div class="card-body">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="dropdownField">Select Specialist:</label>
+                    <select formControlName="specialist" class="form-control" id="dropdownField" required>
+                        <option value="" disabled>Select an option</option>
+                        <option *ngFor="let option of specialist" [value]="option.key">{{option.name}}</option>
+                    </select>
+                    <div
+                        *ngIf="myForm.controls['specialist'].invalid && (myForm.controls['specialist'].dirty || myForm.controls['specialist'].touched)">
+                        <div class="text-danger">Please select a specialist.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input formControlName="date" type="date" class="form-control" id="date" required>
+                    <div
+                        *ngIf="myForm.controls['date'].invalid && (myForm.controls['date'].dirty || myForm.controls['date'].touched)">
+                        <div class="text-danger">Please select a valid date.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="start_time">Start Time:</label>
+                    <input formControlName="start_time" type="text" class="form-control" id="start_time" required>
+                    <div
+                        *ngIf="myForm.controls['start_time'].invalid && (myForm.controls['start_time'].dirty || myForm.controls['start_time'].touched)">
+                        <div class="text-danger">Start Time is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="end_time">End Time:</label>
+                    <input formControlName="end_time" type="text" class="form-control" id="end_time" required>
+                    <div
+                        *ngIf="myForm.controls['end_time'].invalid && (myForm.controls['end_time'].dirty || myForm.controls['end_time'].touched)">
+                        <div class="text-danger">End Time is required.</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="display_slots" class="mt-4">
+        <div class="card">
+            <div class="card-header"> Available Slots </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Specialist</th>
+                            <th>Doctor Name</th>
+                            <th>Slot</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let slot of slots_list">
+                            <td>{{ slot['specialist'] ? slot['specialist'] : '--' }}</td>
+                            <td>{{ slot['doctor'] ? slot['doctor'] : '--' }}</td>
+                            <td>{{ slot['slot'] ? slot['slot'] : '--' }}</td>
+                            <td><a class="link-opacity-100" href="#">Book Slot</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

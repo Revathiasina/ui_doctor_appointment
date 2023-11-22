@@ -58,15 +58,20 @@
                         <tr>
                             <th>Specialist</th>
                             <th>Doctor Name</th>
-                            <th>Slot</th>
+                            <th>Date</th>
+                            <th>Working Hours</th>
+                            <!-- <th>Slots Booked</th> -->
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let slot of slots_list">
-                            <td>{{ slot['specialist'] ? slot['specialist'] : '--' }}</td>
-                            <td>{{ slot['doctor'] ? slot['doctor'] : '--' }}</td>
-                            <td>{{ slot['slot'] ? slot['slot'] : '--' }}</td>
+                            <td>{{ slot['docType'] ? (slot?.docType | titlecase) : '--' }}</td>
+                            <td>{{ slot['doctorname'] ? slot['doctorname'] : '--' }}</td>
+                            <td>{{ slot['date'] ? (slot.date | date: 'mediumDate') : '--' }}</td>
+                            <td>{{ slot['startTime'] ? ((slot.startTime | date: 'shortTime') + ' '+ (slot.endTime |
+                                date: 'shortTime')) : '--' }}</td>
+                            <!-- <td class="text-center"><i class="fa fa-eye"></i></td> -->
                             <td><a class="link-opacity-100" href="#">Book Slot</a></td>
                         </tr>
                     </tbody>
